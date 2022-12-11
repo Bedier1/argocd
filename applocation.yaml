@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  #where argcod pods are
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
+    targetRevision: HEAD
+    path: dev
+  destination: 
+    server: https://kubernetes.default.svc
+    #https://192.168.49.2:8443
+    namespace: myapp
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+       #overide manuel edit
+      selfHeal: true
+      prune: true
