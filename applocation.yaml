@@ -10,6 +10,8 @@ spec:
     repoURL: https://github.com/Bedier1/argocd
     targetRevision: HEAD
     path: k8s
+    directory:
+      recurse:
   destination: 
     server: https://kubernetes.default.svc
     #https://192.168.49.2:8443
@@ -17,6 +19,11 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+      FailOnSharedResource=true
+      ApplyOutOfSyncOnly=true
+      Replace=true
+      #sync only changed files in git
+
     automated:
        #overide manuel edit
       selfHeal: true

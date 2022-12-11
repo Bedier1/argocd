@@ -4,3 +4,4 @@ and specify which clusters can argo deploy on
 refresh(compare) is done every 3 mon
 argo have 3 main components
 apiserver-reposerver-application controller- dex-redis-application set (if you want deploy same app to multiple clusters)
+project contain multiple apps

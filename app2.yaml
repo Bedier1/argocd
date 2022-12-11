@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: guestbook-demo-project
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: ns-1
+    server: "https://kubernetes.default.svc"
+  project: demo-project
+  source: 
+    path: k8s
+    repoURL:  "https://github.com/Bedier1/argocd"
+    targetRevision: master
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+       #overide manuel edit
+      selfHeal: true
+      prune: true
